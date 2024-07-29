@@ -40,8 +40,9 @@ func outputText(text string)  {
 	fmt.Print(text)
 }
 
-func calculateFutureValue(investmentAmount, expectedReturnRate, years float64) ( float64, float64) {
-	futureValue := investmentAmount * math.Pow(1 + expectedReturnRate / 100, years);
-	futureRealValue := futureValue / math.Pow(1 + infaltionRate / 100, years);
-	return futureValue, futureRealValue
+func calculateFutureValue(investmentAmount, expectedReturnRate, years float64) (fv float64, rfv float64) {
+	fv = investmentAmount * math.Pow(1 + expectedReturnRate / 100, years);
+	rfv = fv / math.Pow(1 + infaltionRate / 100, years);
+
+	return fv, rfv;
 }
