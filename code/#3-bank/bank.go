@@ -1,66 +1,67 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func main() { 
-	accountBalance  := 1000.0
+func main() {
+	accountBalance := 1000.0
 
+	fmt.Println("-----------------------------")
+	fmt.Println("Welcome to go Bank!")
+	fmt.Println("-----------------------------")
 
-	for i := 0; i < 3; i++ {
-		fmt.Println("-----------------------------")
-		fmt.Println("Welcome to go Bank!")
-		fmt.Println("-----------------------------")
+	for {
 		fmt.Println("What would you like to do?")
 		fmt.Println("-----------------------------")
 
-		// options
 		fmt.Println("1. Check The Balance")
 		fmt.Println("2. Deposit Money")
 		fmt.Println("3. Withdraw Money")
 		fmt.Println("4. Exit")
 
-		var choise int
-		fmt.Print("Enter your choise: ")
-		fmt.Scan(&choise)
+		var choice int
+		fmt.Print("Enter your choice: ")
+		fmt.Scan(&choice)
 
-		// wantsCheckBalance := choise == 1
-		// wantsDepositMoney := choise == 2
-		// wantsWithdrawMoney := choise == 3
-		// wantsExit := choise == 4
-
-		if choise == 1 {
+		switch choice {
+		case 1:
 			fmt.Println("Your account balance is:", accountBalance)
-		} else if choise == 2 {
+
+		case 2:
 			fmt.Print("Your deposit amount: ")
 			var depositAmount float64
 			fmt.Scan(&depositAmount)
 
 			if depositAmount <= 0 {
-				fmt.Println("Invalid amount. must be greater than 0");
-				return;
+				fmt.Println("Invalid amount. Must be greater than 0")
+				continue
 			}
-	
 			accountBalance += depositAmount
 			fmt.Println("Your new account balance is:", accountBalance)
-		} else if choise == 3 {
-			fmt.Print("Your withdraw amount:  ")
+
+		case 3:
+			fmt.Print("Your withdraw amount: ")
 			var withdrawAmount float64
 			fmt.Scan(&withdrawAmount)
 
 			if withdrawAmount <= 0 {
-				fmt.Println("Invalid amount. must be greater than 0");
-				return;
+				fmt.Println("Invalid amount. Must be greater than 0")
+				continue
 			}
 
 			if withdrawAmount > accountBalance {
 				fmt.Println("Insufficient balance. Your account balance is:", accountBalance)
-				return;
+				continue
 			}
 
 			accountBalance -= withdrawAmount
 			fmt.Println("Your new account balance is:", accountBalance)
-		} else {
+
+		default:
 			fmt.Println("Goodbye!")
+			fmt.Println("Thanks for using go Bank!")
+			return
 		}
-	}	
-}   
+	}
+} 
